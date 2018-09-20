@@ -4,6 +4,8 @@ import org.apereo.cas.authentication.CoreAuthenticationTestUtils;
 import org.apereo.cas.services.ServicesManager;
 import org.apereo.cas.util.junit.ConditionalIgnoreRule;
 
+import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
@@ -19,6 +21,7 @@ import static org.junit.Assert.*;
  * @author Timur Duehr
  * @since 6.0.0
  */
+@Slf4j
 public abstract class BaseSurrogateAuthenticationServiceTests {
 
     @ClassRule
@@ -36,12 +39,14 @@ public abstract class BaseSurrogateAuthenticationServiceTests {
     public abstract SurrogateAuthenticationService getService();
 
     @Test
-    public void verifyList() throws Exception {
-        assertFalse(getService().getEligibleAccountsForSurrogateToProxy("casuser").isEmpty());
+    public void verifyList() {
+        val list = getService().getEligibleAccountsForSurrogateToProxy("casuser");
+        LOGGER.debug("verifyList [{}]", list);
+        assertFalse(list.isEmpty());
     }
 
     @Test
-    public void verifyProxying() throws Exception {
+    public void verifyProxying() {
         assertTrue(getService().canAuthenticateAs("banderson", CoreAuthenticationTestUtils.getPrincipal("casuser"),
             CoreAuthenticationTestUtils.getService()));
     }
