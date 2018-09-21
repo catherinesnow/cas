@@ -25,8 +25,8 @@ gradleBuildOptions="--stacktrace --build-cache --configure-on-demand --no-daemon
 
 echo -e "***********************************************"
 echo -e "Gradle build started at `date`"
+echo -e "commit: [${TRAVIS_COMMIT_MESSAGE}]"
 echo -e "***********************************************"
-
 ./ci/tests/ldap/run-ldap-server.sh
 
 gradleBuild="$gradleBuild testLdap coveralls -x test -x javadoc -x check \
