@@ -28,10 +28,10 @@ public abstract class BaseSurrogateAuthenticationServiceTests {
     public static final SpringClassRule SPRING_CLASS_RULE = new SpringClassRule();
 
     @Rule
-    public final SpringMethodRule springMethodRule = new SpringMethodRule();
+    public final ConditionalIgnoreRule conditionalIgnoreRule = new ConditionalIgnoreRule();
 
     @Rule
-    public final ConditionalIgnoreRule conditionalIgnoreRule = new ConditionalIgnoreRule();
+    public final SpringMethodRule springMethodRule = new SpringMethodRule();
 
     @Mock
     protected ServicesManager servicesManager;

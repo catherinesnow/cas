@@ -25,13 +25,12 @@ gradleBuildOptions="--stacktrace --build-cache --configure-on-demand --no-daemon
 
 echo -e "***********************************************"
 echo -e "Gradle build started at `date`"
-echo -e "commit: [${TRAVIS_COMMIT_MESSAGE}]"
 echo -e "***********************************************"
 ./ci/tests/ldap/run-ldap-server.sh
 
 gradleBuild="$gradleBuild testLdap coveralls -x test -x javadoc -x check \
     -DskipNpmLint=true -DskipGradleLint=true -DskipSass=true -DskipNpmLint=true --parallel \
-    -DskipNodeModulesCleanUp=true -DskipNpmCache=true -DskipNestedConfigMetadataGen=true "
+    -DskipNodeModulesCleanUp=true -DskipNpmCache=true -DskipNestedConfigMetadataGen=true -DshowStandardStreams=true --rerun-tasks"
 
 if [[ "${TRAVIS_COMMIT_MESSAGE}" == *"[show streams]"* ]]; then
     gradleBuild="$gradleBuild -DshowStandardStreams=true "
