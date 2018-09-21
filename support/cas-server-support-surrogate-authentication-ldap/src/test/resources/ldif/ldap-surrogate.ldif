@@ -1,4 +1,9 @@
-dn: cn=casuser,ou=people,dc=example,dc=org
+dn: ou=surrogates,dc=example,dc=org
+objectClass: organizationalUnit
+objectClass: top
+ou: surrogates
+
+dn: cn=casuser,ou=surrogates,dc=example,dc=org
 objectClass: organizationalRole
 objectClass: inetOrgPerson
 objectClass: person
